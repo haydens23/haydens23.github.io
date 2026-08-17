@@ -591,6 +591,24 @@ const OVERVIEWS = {
 };
 
 const DETAILS = {
+  "projects/chief-of-staff":{
+    kicker:"Project \u00b7 Jun 2026 \u00b7 Python, Anthropic API",
+    title:"Chief of Staff Agent",
+    lede:"Most of my morning admin wasn't hard, it was just sequential \u2014 read the inbox, check what's already on the calendar, notice the two things that collide, decide which one moves. <b>None of that needs me awake for it.</b> The agent runs at 6:30 AM and has the answer waiting.",
+    gallery:[
+      {src:"agent-1.jpg", wide:true, cap:"The morning brief lands as an email before I'm up. On the right: the run log for that morning, and a conflict the agent caught and resolved on its own."}
+    ],
+    sections:[
+      {h:"What it does", body:"Seven callable tools on an Anthropic API tool-use loop, with OAuth into Gmail and two Google Calendars. It reads the day's events, finds overlaps, drafts replies to mail that needs one, writes corrections back to the calendar, and delivers a single HTML brief. It fires on a launchd schedule with no prompt from me and saves about 30 minutes daily."},
+      {h:"Making it safe to run unattended", list:[
+        "<b>Idempotent calendar writes.</b> An agent that reschedules the same event twice is worse than no agent. Every write checks for its own prior effect first, so a re-run is a no-op rather than a duplicate.",
+        "<b>Drafts, not sends.</b> Replies land in my drafts folder. The agent does the reading and the first pass; the send stays a human decision.",
+        "<b>Daily spot-checks.</b> Each run logs which tools fired, in what order, and how long each took \u2014 so when output drifts I can see which step changed rather than guessing at the whole loop."
+      ]},
+      {h:"What I took from it", body:"The interesting problem turned out not to be getting a model to reason over a calendar, which mostly works. It was deciding where the agent's authority ends. Reading is free, drafting is cheap to undo, and sending is not \u2014 so those three deserve different levels of trust. Drawing that line carefully is most of what made it something I actually leave running."}
+    ],
+    chips:["Python","Anthropic API","Gmail API","Google Calendar API","OAuth","launchd","Agentic tool use"]
+  },
   "projects/adapt":{
     kicker:"Project \u00b7 Jun 2026 \u00b7 Solo build",
     title:"Adapt \u2014 autoregulated lifting",
