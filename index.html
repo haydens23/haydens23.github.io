@@ -245,6 +245,82 @@
   .sitelink .ttl{font-size:14px;margin:2px 0 3px}
   .sitelink .desc{font-size:12px;color:var(--muted);line-height:1.5}
 
+
+  /* ---------- case study modal ---------- */
+  .scrim{
+    position:fixed;inset:0;background:rgba(32,33,36,.5);
+    backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+    opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:50;
+  }
+  .scrim.on{opacity:1;pointer-events:auto}
+  .modal{
+    position:fixed;inset:0;z-index:51;display:grid;place-items:center;
+    padding:20px;pointer-events:none;
+  }
+  .modal-card{
+    width:min(880px,100%);max-height:88dvh;overflow-y:auto;background:#fff;
+    border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.28);pointer-events:auto;
+    opacity:0;transform:translateY(28px) scale(.965);
+    transition:opacity .34s cubic-bezier(.2,.8,.2,1), transform .34s cubic-bezier(.2,.8,.2,1);
+  }
+  .modal.on .modal-card{opacity:1;transform:none}
+  .modal-head{
+    position:sticky;top:0;background:rgba(255,255,255,.94);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    padding:22px 28px 16px;border-bottom:1px solid var(--line);z-index:2;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  }
+  .modal-head h2{margin:0;font-size:24px;font-weight:400;line-height:1.25}
+  .modal-head .kicker{font-size:12px;color:var(--meta);margin-bottom:5px}
+  .modal-close{
+    border:0;background:var(--chip);width:34px;height:34px;border-radius:50%;
+    cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:background .15s,transform .15s;
+  }
+  .modal-close:hover{background:#e3e6e8;transform:rotate(90deg)}
+  .modal-body{padding:24px 28px 30px}
+  .modal-body p{font-size:15px;line-height:1.68;color:var(--muted);margin:0 0 16px}
+  .modal-body p b{color:#202124}
+  .modal-body h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--meta);margin:26px 0 12px;font-weight:500}
+  .modal-body ul{margin:0 0 16px;padding-left:20px}
+  .modal-body li{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:8px}
+  .modal-body li b{color:#202124}
+
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:4px 0 8px}
+  .gallery figure{margin:0}
+  .gallery img{
+    display:block;width:100%;border-radius:14px;border:1px solid var(--line);
+    cursor:zoom-in;background:#fafafa;
+    transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+  }
+  .gallery img:hover{transform:translateY(-5px) scale(1.015);box-shadow:0 16px 34px rgba(0,0,0,.16)}
+  .gallery figcaption{font-size:12px;color:var(--meta);margin-top:9px;line-height:1.5}
+
+  .rise{opacity:0;transform:translateY(16px);animation:rise .5s cubic-bezier(.2,.8,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  .lightbox{
+    position:fixed;inset:0;z-index:60;background:rgba(20,20,22,.9);
+    display:grid;place-items:center;padding:32px;cursor:zoom-out;
+    opacity:0;pointer-events:none;transition:opacity .25s ease;
+  }
+  .lightbox.on{opacity:1;pointer-events:auto}
+  .lightbox img{
+    max-width:100%;max-height:100%;border-radius:12px;
+    transform:scale(.93);transition:transform .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .lightbox.on img{transform:none}
+
+  .expand-hint{
+    display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#1a73e8;
+    margin-top:9px;
+  }
+
+  @media (max-width:640px){
+    .gallery{grid-template-columns:1fr}
+    .modal-head{padding:18px 18px 14px}
+    .modal-body{padding:20px 18px 26px}
+    .modal-card{max-height:92dvh;border-radius:14px}
+  }
   .footer{
     border-top:1px solid var(--line);padding:14px 24px;font-size:13px;
     color:var(--meta);display:flex;gap:20px;flex-wrap:wrap;
@@ -513,6 +589,28 @@ const OVERVIEWS = {
   }
 };
 
+const DETAILS = {
+  "projects/caloriq":{
+    kicker:"Project \u00b7 Oct \u2013 Dec 2024 \u00b7 Product Owner",
+    title:"CalorIQ \u2014 photo-based meal logging",
+    lede:"UCLA publishes nutrition data for every dining hall meal, and essentially nobody uses it \u2014 it lives on a page you have to go find, per item, per hall. <b>CalorIQ started from that gap:</b> if the data already exists, logging a meal should take a photo, not a search.",
+    gallery:[
+      {src:"caloriq-1.jpg", cap:"Brand identity \u2014 the goal was something that felt closer to a campus app than a fitness tracker."},
+      {src:"caloriq-2.jpg", cap:"Core surfaces: the daily food log, the camera scanner, and the per-meal breakdown with macros."}
+    ],
+    sections:[
+      {h:"What we built", body:"Point the camera at a plate and get an itemized estimate back. The Gemini Vision API handles recognition, ARKit estimates portion size from depth, and Firebase holds the log. Built with a 9-person team on React Native and shipped in an 8-week sprint."},
+      {h:"What I owned", list:[
+        "<b>Scope.</b> We cut a barcode scanner and a restaurant database from v1 to protect the 8-week window \u2014 dining hall food is neither packaged nor on a menu, so neither would have served the actual user.",
+        "<b>Prioritization.</b> Ran the backlog across 9 people with a weekly cut line, which mattered more than any single feature decision.",
+        "<b>Post-launch iteration.</b> Usage data showed people screenshotting their logs and sending them to friends, unprompted. That wasn't a feature \u2014 it was a workaround. We shipped a friends feature in response."
+      ]},
+      {h:"What I took from it", body:"The friends feature is the part I still think about. Nobody requested it in a survey; it showed up as behavior working around a missing surface. Watching what users do around the edges of a product turned out to be a better signal than asking them what they wanted."}
+    ],
+    chips:["React Native","Gemini Vision API","ARKit","Firebase","Product ownership","8-week sprint"]
+  }
+};
+
 const PAA = [
   {q:"What is Hayden looking for right now?", a:"Product management, strategy, and business operations roles — ideally somewhere close to both the users and the model. Email is the fastest way in."},
   {q:"What's the most interesting thing he's built?", a:"Probably the Chief of Staff Agent: seven tools, OAuth across Gmail and two calendars, running unattended on a launchd schedule. The interesting part was making it trustworthy enough to run without supervision — idempotent calendar writes and daily spot-checks, so it never double-books and never drifts."},
@@ -613,6 +711,8 @@ function renderResult(r,i){
     <h4><button data-path="${r.path}" data-tab="${r.tab}">${r.title}</button></h4>
     <p>${r.body}</p>
     ${r.chips?`<div class="chips">${r.chips.map(c=>`<span class="chip">${c}</span>`).join("")}</div>`:""}
+    ${DETAILS[r.path]?`<div class="expand-hint">View case study
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>`:""}
   </div>`;
 }
 
@@ -695,7 +795,11 @@ function render(){
   document.getElementById("kpSlot").innerHTML = renderKP();
 
   document.querySelectorAll("#resultList h4 button").forEach(b=>{
-    b.onclick=()=>{ state.seen.add(b.dataset.path); state.tab=b.dataset.tab; render(); window.scrollTo({top:0,behavior:"smooth"}); };
+    b.onclick=()=>{
+      state.seen.add(b.dataset.path);
+      if(DETAILS[b.dataset.path]){ b.closest(".result").classList.add("seen"); openDetail(b.dataset.path); return; }
+      state.tab=b.dataset.tab; render(); window.scrollTo({top:0,behavior:"smooth"});
+    };
   });
   document.querySelectorAll("[data-try]").forEach(b=>b.onclick=()=>{ state.query=b.dataset.try; state.tab="All"; render(); });
   document.querySelectorAll("[data-jump]").forEach(a=>a.onclick=e=>{ e.preventDefault(); state.tab=a.dataset.jump; render(); });
@@ -714,6 +818,71 @@ function goHome(){
   document.getElementById("homeInput").value="";
   closeSuggest();
 }
+
+
+/* --- case study modal --- */
+const scrim=document.createElement("div"); scrim.className="scrim"; document.body.appendChild(scrim);
+const modal=document.createElement("div"); modal.className="modal"; modal.style.display="none";
+modal.innerHTML='<div class="modal-card" role="dialog" aria-modal="true"></div>';
+document.body.appendChild(modal);
+const modalCard=modal.querySelector(".modal-card");
+const lightbox=document.createElement("div"); lightbox.className="lightbox"; lightbox.innerHTML="<img alt=''>";
+document.body.appendChild(lightbox);
+let lastFocus=null;
+
+function openDetail(path){
+  const d=DETAILS[path]; if(!d) return;
+  lastFocus=document.activeElement;
+  let i=0; const delay=()=>`style="animation-delay:${60+(i++)*70}ms"`;
+  modalCard.innerHTML=`
+    <div class="modal-head">
+      <div>
+        <div class="kicker">${d.kicker}</div>
+        <h2>${d.title}</h2>
+      </div>
+      <button class="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" stroke="#3c4043" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p class="rise" ${delay()}>${d.lede}</p>
+      <div class="gallery">
+        ${d.gallery.map(g=>`<figure class="rise" ${delay()}>
+          <img src="${g.src}" alt="${d.title}" loading="lazy">
+          <figcaption>${g.cap}</figcaption></figure>`).join("")}
+      </div>
+      ${d.sections.map(s=>`
+        <div class="rise" ${delay()}>
+          <h3>${s.h}</h3>
+          ${s.body?`<p>${s.body}</p>`:""}
+          ${s.list?`<ul>${s.list.map(l=>`<li>${l}</li>`).join("")}</ul>`:""}
+        </div>`).join("")}
+      <div class="chips rise" ${delay()}>${d.chips.map(c=>`<span class="chip">${c}</span>`).join("")}</div>
+    </div>`;
+
+  modal.style.display="grid";
+  document.body.style.overflow="hidden";
+  requestAnimationFrame(()=>{ scrim.classList.add("on"); modal.classList.add("on"); });
+  modalCard.querySelector(".modal-close").onclick=closeDetail;
+  modalCard.querySelectorAll(".gallery img").forEach(img=>{
+    img.onclick=()=>{ lightbox.querySelector("img").src=img.src; lightbox.classList.add("on"); };
+  });
+  setTimeout(()=>modalCard.querySelector(".modal-close").focus(),120);
+}
+function closeDetail(){
+  scrim.classList.remove("on"); modal.classList.remove("on");
+  document.body.style.overflow="";
+  setTimeout(()=>{ modal.style.display="none"; modalCard.innerHTML=""; },340);
+  if(lastFocus) lastFocus.focus();
+}
+scrim.onclick=closeDetail;
+modal.onclick=e=>{ if(e.target===modal) closeDetail(); };
+lightbox.onclick=()=>lightbox.classList.remove("on");
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Escape") return;
+  if(lightbox.classList.contains("on")) lightbox.classList.remove("on");
+  else if(modal.classList.contains("on")) closeDetail();
+});
 
 /* --- home search + suggestions --- */
 const homeInput=document.getElementById("homeInput");
