@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hayden Selvakumar</title>
-<meta name="description" content="Hayden Selvakumar — UCLA Cognitive Science with a Computing Specialization, Accenture Management Consulting Summer Analyst, aspiring product manager. Open to Product, Strategy, and Business Operations roles.">
+<meta name="description" content="Hayden Selvakumar — UCLA Cognitive Science (Computing), Accenture Management Consulting Summer Analyst, aspiring product manager. Open to PM, strategy, and BizOps roles.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
@@ -304,7 +304,7 @@
 
   <nav class="quick" id="quick"></nav>
 
-  <p class="tagline">B.S. Cognitive Science, Computing at UCLA · Accenture Summer 2026 · Open to PM and Strategy roles</p>
+  <p class="tagline">B.S. Cognitive Science, Computing at UCLA · Accenture Summer 2026 · Open to PM, strategy, and BizOps roles</p>
 </main>
 
 <!-- ================= RESULTS ================= -->
@@ -355,10 +355,9 @@ const PROFILE = {
   initial: "H",
   title: "Aspiring Product Manager",
   email: "haydenselvakumar23@gmail.com",
-  phone: "(669) 270-9859",
   linkedin: "https://www.linkedin.com/in/haydenselvakumar23/",
   github: "https://github.com/haydens23",
-  resume: "Hayden_Selvakumar_APM_Resume.pdf",              // ← drop your resume PDF link here
+  resume: "#",              // ← drop your resume PDF link here
   photo: HEADSHOT,          // embedded below; swap for a URL if you prefer
   domain: "haydenselvakumar.com"
 };
@@ -368,17 +367,12 @@ const TABS = ["All","About","Experience","Projects","Skills","Interests","Contac
 const RESULTS = [
   {
     tab:"About", path:"about", title:"Cognitive science, applied to shipping product",
-    body:"<b>B.S. Cognitive Science (Computing) at UCLA</b>, minoring in Statistics &amp; Data Science, graduating December 2027. I just finished a summer as a Management Consulting Summer Analyst at Accenture in San Francisco, where most of what I built ended up being AI tooling. Outside of that I ship my own products and use them daily.",
+    body:"<b>B.S. Cognitive Science (Computing) at UCLA</b>, minoring in Statistics &amp; Data Science. I just finished a summer as a Management Consulting Summer Analyst at Accenture in San Francisco, where most of what I built ended up being AI tooling. Outside of that I ship my own products and use them daily.",
     keys:"about who bio hayden summary intro background story you yourself ucla cognitive science"
   },
   {
-    tab:"About", path:"about/how-i-work", title:"Rules first, model second",
-    body:"A pattern shows up in almost everything I build: ship the deterministic version first, find where it breaks, then replace only that part with a reasoning layer. Adapt and the Chief of Staff Agent both started as if-then logic and became LLM-driven exactly where the rules failed. It keeps behavior predictable and makes the model earn its place.",
-    keys:"how work process philosophy approach values ship build principles thinking design llm rules"
-  },
-  {
     tab:"About", path:"about/education", title:"UCLA · B.S. Cognitive Science, Computing",
-    body:"<b>Expected December 2027 · GPA 3.7.</b> Minor in Statistics &amp; Data Science. Coursework in data structures and algorithms, Python with applications, probability and statistics, and a neural networks lab. BCG and Bain case competition finalist; Perplexity Campus Strategist.",
+    body:"<b>GPA 3.7.</b> Minor in Statistics &amp; Data Science. Coursework in data structures and algorithms, Python with applications, probability and statistics, and a neural networks lab. BCG and Bain case competition finalist; Perplexity Campus Strategist.",
     chips:["Data Structures & Algorithms","Probability & Statistics","Neural Networks Lab","BCG finalist","Bain finalist"],
     keys:"education school ucla degree major minor gpa graduation coursework classes honors bcg bain perplexity campus strategist"
   },
@@ -413,26 +407,20 @@ const RESULTS = [
     keys:"avalerian private equity pe finance diligence screening saas miami investment"
   },
   {
-    tab:"Experience", path:"experience/leadership", title:"Leadership: GLITCH and Delta Sigma Pi",
-    body:"<b>VP of Operations, GLITCH</b> (Nov 2024 – Jun 2026) — negotiated vendor contracts and secured partnerships with UCLA Samueli, NVIDIA, and Google, <b>cutting event costs 40%</b> while running flagship and monthly hackathons for a 50+ member club. <b>Senior Vice President, Delta Sigma Pi</b> (May 2025 – May 2026) — led a 20+ member exec board and a $5,000 budget across 60+ active members.",
-    chips:["GLITCH","Delta Sigma Pi","NVIDIA","Google","Vendor negotiation"],
-    keys:"leadership glitch hackathon delta sigma pi fraternity vp operations senior vice president club ucla nvidia google samueli budget"
-  },
-  {
     tab:"Projects", path:"projects/chief-of-staff", title:"Chief of Staff Agent — 7 tools, running unattended",
-    body:"<b>Jun 2026 · Python, Anthropic API, Gmail &amp; Google Calendar APIs.</b> An autonomous agent with seven callable tools that resolves multi-step scheduling and triage across two accounts, running on a launchd schedule and <b>saving 30 minutes daily</b>. I shipped a deterministic rules layer first, replaced it with an LLM reasoning step where output degraded on ambiguous inputs, and added daily spot-checks to keep behavior predictable.",
+    body:"<b>Jun 2026 · Python, Anthropic API, Gmail &amp; Google Calendar APIs.</b> An autonomous agent with seven callable tools that resolves multi-step scheduling and triage across two accounts, running on a launchd schedule and <b>saving 30 minutes daily</b>. Daily spot-checks keep its behavior predictable enough to trust with a real inbox.",
     chips:["Python","Anthropic API","Gmail API","Google Calendar","Agentic tool use","OAuth"],
     keys:"chief of staff agent python anthropic api gmail calendar automation agentic tool use morning brief launchd triage scheduling evals"
   },
   {
     tab:"Projects", path:"projects/adapt", title:"Adapt — autoregulated lifting, coached by a model",
-    body:"<b>Jun 2026 · Lovable, Supabase, Web Speech API, LLM reasoning layer.</b> An RPE/RIR-based lifting app shipped end to end. Fixed if-then progression logic kept failing on edge cases, so I replaced it with an LLM coaching layer that reasons about the training block instead. Sets are logged by voice mid-workout. I use it every session.",
+    body:"<b>Jun 2026 · Lovable, Supabase, Web Speech API, LLM reasoning layer.</b> An RPE/RIR-based lifting app shipped end to end. An LLM coaching layer reads how hard each set actually felt and adjusts programming across the training block. Sets are logged by voice mid-workout. I use it every session.",
     chips:["Supabase","Web Speech API","LLM coaching","Autoregulation","Lovable"],
     keys:"adapt lifting gym tracker workout supabase voice llm rpe rir autoregulation training app lovable"
   },
   {
-    tab:"Projects", path:"projects/caloriq", title:"CalorIQ — photo-based meal logging, 300+ users",
-    body:"<b>Oct – Dec 2024 · React Native, Gemini Vision API, ARKit, Firebase.</b> Product Owner on a 9-person team. We launched photo-based meal logging in an 8-week sprint, aimed at dining hall nutrition data UCLA already had but nobody used. <b>300+ students</b> signed up; post-launch data showed unprompted social sharing, so we shipped a friends feature.",
+    tab:"Projects", path:"projects/caloriq", title:"CalorIQ — photo-based meal logging",
+    body:"<b>Oct – Dec 2024 · React Native, Gemini Vision API, ARKit, Firebase.</b> Product Owner on a 9-person team. We launched photo-based meal logging in an 8-week sprint, aimed at dining hall nutrition data UCLA already had but nobody used. Post-launch data showed unprompted social sharing, so we shipped a friends feature.",
     chips:["React Native","Gemini Vision","ARKit","Firebase","Product ownership"],
     keys:"caloriq diet nutrition app react native gemini arkit firebase product owner ucla dining meal logging friends feature"
   },
@@ -456,45 +444,44 @@ const RESULTS = [
   },
   {
     tab:"Interests", path:"interests", title:"Outside of work",
-    body:"NYT Crosswords most mornings. Weightlifting on an upper/lower split, which is the reason Adapt exists. Fantasy football, Texas Hold'em, and chess — all variations on making decisions with incomplete information. Pick-up basketball and backpacking when I can get out of the city.",
-    chips:["NYT Crosswords","Weightlifting","Fantasy football","Texas Hold'em","Basketball","Backpacking","Chess"],
-    keys:"interests hobbies fun personal chess poker texas holdem crossword gym lifting weightlifting backpacking basketball fantasy football cooking food dog puppy golden retriever"
+    body:"NYT Crosswords most mornings. Weightlifting on an upper/lower split, which is the reason Adapt exists. Strategy games are the constant: chess, Wordle, and Rainbow Six Siege, plus fantasy football and Texas Hold'em. Pick-up basketball and backpacking when I can get out of the city.",
+    chips:["Chess","Wordle","Rainbow Six Siege","NYT Crosswords","Weightlifting","Fantasy football","Texas Hold'em","Basketball","Backpacking"],
+    keys:"interests hobbies fun personal chess wordle rainbow six siege r6 strategy games gaming poker texas holdem crossword gym lifting weightlifting backpacking basketball fantasy football cooking food dog puppy golden retriever"
   },
   {
-    tab:"Contact", path:"contact", title:"Open to PM and APM roles",
-    body:"The fastest way to reach me is email: <b>haydenselvakumar23@gmail.com</b>. I'm recruiting for product management and APM roles for a 2028 start, graduating December 2027. Happy to talk about agent design, evals, or why your lifting app's progression logic breaks on deload weeks.",
-    keys:"contact email reach hire hiring internship apm pm role job available open work talk coffee chat phone recruiting"
+    tab:"Contact", path:"contact", title:"Open to PM, strategy, and BizOps roles",
+    body:"The fastest way to reach me is email: <b>haydenselvakumar23@gmail.com</b>. I'm recruiting for product management, strategy, and business operations roles. Happy to talk about agent design, evals, or why your lifting app's progression logic breaks on deload weeks.",
+    keys:"contact email reach hire hiring internship apm pm strategy bizops business operations role job available open work talk coffee chat recruiting"
   }
 ];
 
 const OVERVIEWS = {
   About:{
-    lead:`${PROFILE.name} is a Cognitive Science student at UCLA (Computing specialization, Statistics &amp; Data Science minor, graduating December 2027). He was a <a href="#" data-jump="Experience">Management Consulting Summer Analyst at Accenture</a> in San Francisco in Summer 2026.`,
+    lead:`${PROFILE.name} is a Cognitive Science student at UCLA (Computing specialization, Statistics &amp; Data Science minor). He was a <a href="#" data-jump="Experience">Management Consulting Summer Analyst at Accenture</a> in San Francisco in Summer 2026.`,
     facts:[
-      "<b>School:</b> UCLA, B.S. Cognitive Science (Computing), expected December 2027, GPA 3.7.",
-      "<b>Summer 2026:</b> Accenture Management Consulting Summer Analyst — built LLM workflows on the Anthropic API and led a staffing-forecast dashboard.",
-      "<b>Previously:</b> Strategic Finance at Intuit, Private Equity at Avalerian Capital.",
+      "<b>School:</b> UCLA, B.S. Cognitive Science (Computing), GPA 3.7.",
+      "<b>Summer 2026:</b> Accenture Management Consulting Summer Analyst — staffed on two projects: automating workflows for a Fortune 500 semiconductor enabler's digital transformation, and building a staffing-forecast dashboard for a leading AI lab.",
+      "<b>Previously:</b> Strategic Finance at Intuit, Private Equity at Avalerian Capital, Business Development at Bluetick Consultants.",
       "<b>Also building:</b> Adapt, a lifting app with an LLM coaching layer, and a Chief of Staff Agent that runs unattended daily.",
-      "<b>Looking for:</b> PM and APM roles."
+      "<b>Looking for:</b> PM, strategy, and BizOps roles."
     ]
   },
   Experience:{
-    lead:"Three internships across consulting, strategic finance, and private equity, plus two exec board roles at UCLA. The through-line is owning something end to end and having a number attached to it.",
+    lead:"Four internships across consulting, strategic finance, private equity, and business development. The through-line is owning something end to end and having a number attached to it.",
     facts:[
       "<b>Accenture</b> (Jun – Aug 2026) — Management Consulting Summer Analyst, San Francisco. LLM workflows, PMO tooling, staffing forecasts.",
       "<b>Intuit</b> (Jun – Sep 2025) — Strategic Finance. Owned a product roadmap; pricing work informed a change projected at $15M+ in FY26 revenue.",
       "<b>Avalerian Capital</b> (Sep 2024 – Jan 2025) — Private Equity. Screened 150+ B2B SaaS companies weekly, cutting evaluation time 60%.",
-      "<b>Leadership:</b> VP of Operations at GLITCH and Senior Vice President of Delta Sigma Pi."
+      "<b>Bluetick Consultants</b> (May – Aug 2024) — Business Development."
     ]
   },
   Projects:{
-    lead:"Three shipped products and one research study. The products were all built because Hayden wanted the thing to exist and then kept using it; two of them replaced their own rules-based logic with a reasoning layer once the rules broke.",
+    lead:"Three shipped products and one research study — all built because Hayden wanted the thing to exist, and all still in use.",
     facts:[
       "<b>Chief of Staff Agent</b> — 7-tool autonomous agent on the Anthropic API across Gmail and Calendar, saving 30 minutes daily.",
       "<b>Adapt</b> — RPE/RIR autoregulated lifting app with voice logging and an LLM coaching layer.",
-      "<b>CalorIQ</b> — photo-based meal logging on the Gemini Vision API, 300+ UCLA students, shipped in an 8-week sprint.",
-      "<b>Research</b> \u2014 a signal detection study on whether people can spot AI-generated images (d\u2032 = 0.85, barely above chance).",
-      "<b>Pattern:</b> deterministic first, model only where the deterministic version fails."
+      "<b>CalorIQ</b> — photo-based meal logging on the Gemini Vision API, shipped in an 8-week sprint.",
+      "<b>Research</b> \u2014 a signal detection study on whether people can spot AI-generated images (d\u2032 = 0.85, barely above chance)."
     ]
   },
   Skills:{
@@ -507,19 +494,18 @@ const OVERVIEWS = {
     ]
   },
   Interests:{
-    lead:"Games with hidden information, heavy things lifted on a schedule, and a crossword streak he refuses to discuss.",
+    lead:"Strategy games, heavy things lifted on a schedule, and a crossword streak he refuses to discuss.",
     facts:[
-      "<b>Games:</b> chess, Texas Hold'em, fantasy football, and the NYT Crossword.",
+      "<b>Strategy games:</b> chess, Wordle, and Rainbow Six Siege.",
       "<b>Training:</b> weightlifting on an upper/lower split — the reason Adapt exists.",
       "<b>Outdoors:</b> pick-up basketball and backpacking.",
       "<b>Based in:</b> San Francisco this summer, Los Angeles during the year."
     ]
   },
   Contact:{
-    lead:`The fastest way to reach Hayden is email at <a href="mailto:${PROFILE.email}">${PROFILE.email}</a>, or ${PROFILE.phone}. He's recruiting for PM and APM roles, graduating December 2027.`,
+    lead:`The fastest way to reach Hayden is email at <a href="mailto:${PROFILE.email}">${PROFILE.email}</a>. He's recruiting for PM, strategy, and BizOps roles.`,
     facts:[
       "<b>Email:</b> haydenselvakumar23@gmail.com",
-      "<b>Phone:</b> (669) 270-9859",
       "<b>LinkedIn:</b> /in/haydenselvakumar23",
       "<b>GitHub:</b> @haydens23"
     ]
@@ -527,8 +513,8 @@ const OVERVIEWS = {
 };
 
 const PAA = [
-  {q:"What is Hayden looking for right now?", a:"Product management and APM roles, graduating December 2027. Ideally somewhere close to both the users and the model. Email is the fastest way in."},
-  {q:"What's the most interesting thing he's built?", a:"Probably the Chief of Staff Agent: seven tools, OAuth across Gmail and two calendars, running unattended on a launchd schedule. The interesting part wasn't the agent — it was figuring out where the deterministic rules layer had to give way to a reasoning step, and adding spot-checks so the swap didn't make behavior unpredictable."},
+  {q:"What is Hayden looking for right now?", a:"Product management, strategy, and business operations roles — ideally somewhere close to both the users and the model. Email is the fastest way in."},
+  {q:"What's the most interesting thing he's built?", a:"Probably the Chief of Staff Agent: seven tools, OAuth across Gmail and two calendars, running unattended on a launchd schedule. The interesting part was making it trustworthy enough to run without supervision — idempotent calendar writes and daily spot-checks, so it never double-books and never drifts."},
   {q:"Why cognitive science instead of CS?", a:"The hard part of building software is rarely the code — it's predicting what a person will do with it. Cognitive science is the study of that, with statistics attached. It also turns out to be good preparation for reasoning about model behavior."},
   {q:"Can he actually code?", a:"Python and SQL daily, plus React Native, C++, Java, R, and MATLAB. CalorIQ, Adapt, and the Chief of Staff Agent are all shipped and in use, not slideware."},
   {q:"What did he actually do at Accenture?", a:"More building than deck-making. An LLM workflow on the Anthropic API that replaced 10 hours of manual curriculum review per cycle, a PMO setup tool that saves about 15 hours per project, a staffing-forecast dashboard he led two interns on, and the data architecture for an internal relationship-intelligence platform."}
@@ -638,7 +624,7 @@ function renderKP(){
     <a class="sitelink" href="${PROFILE.linkedin}" target="_blank" rel="noopener">
       <div class="favicon">in</div>
       <div><div class="meta">LinkedIn</div><div class="ttl">${PROFILE.name} | LinkedIn</div>
-      <div class="desc">UCLA · Accenture Management Consulting Summer Analyst, Summer 2026 · GLITCH · Delta Sigma Pi</div></div>
+      <div class="desc">UCLA · Accenture Management Consulting Summer Analyst, Summer 2026</div></div>
     </a>
     <a class="sitelink" href="${PROFILE.github}" target="_blank" rel="noopener">
       <div class="favicon">gh</div>
@@ -656,12 +642,11 @@ function renderKP(){
     <div class="kp-body">
       <h2>${PROFILE.name}</h2>
       <div class="sub">${PROFILE.title}</div>
-      <div class="kp-row"><b>School:</b> UCLA, expected December 2027</div>
+      <div class="kp-row"><b>School:</b> UCLA</div>
       <div class="kp-row"><b>Studies:</b> B.S. Cognitive Science (Computing), Statistics &amp; Data Science minor</div>
       <div class="kp-row"><b>Summer 2026:</b> Accenture Management Consulting Summer Analyst</div>
-      <div class="kp-row"><b>Leadership:</b> VP Operations, GLITCH · SVP, Delta Sigma Pi</div>
       <div class="kp-row"><b>Honors:</b> BCG &amp; Bain case competition finalist, Perplexity Campus Strategist</div>
-      <div class="kp-row"><b>Status:</b> Open to PM and APM roles</div>
+      <div class="kp-row"><b>Status:</b> Open to PM, strategy, and BizOps roles</div>
       <div class="kp-actions">
         <a href="mailto:${PROFILE.email}">Email</a>
         <a href="${PROFILE.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
