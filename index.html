@@ -296,6 +296,45 @@
   .gallery img:hover{transform:translateY(-5px) scale(1.015);box-shadow:0 16px 34px rgba(0,0,0,.16)}
   .gallery figcaption{font-size:12px;color:var(--meta);margin-top:9px;line-height:1.5}
 
+
+  /* ---------- slide deck viewer ---------- */
+  .deck{margin:6px 0 14px}
+  .deck-stage{
+    position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+    border:1px solid var(--line);background:#0f1c2e;
+  }
+  .deck-slide{
+    position:absolute;inset:0;opacity:0;pointer-events:none;
+    transform:translateX(7%) scale(.93);
+    transition:opacity .55s cubic-bezier(.2,.8,.2,1), transform .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .deck-slide.before{transform:translateX(-7%) scale(.93)}
+  .deck-slide.on{opacity:1;transform:none;pointer-events:auto;z-index:2}
+  .deck-slide img{width:100%;height:100%;object-fit:contain;display:block;cursor:zoom-in}
+  .deck-nav{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;
+    background:rgba(255,255,255,.9);display:grid;place-items:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.3);opacity:0;transition:opacity .25s, transform .2s;
+  }
+  .deck-stage:hover .deck-nav,.deck-nav:focus-visible{opacity:1}
+  .deck-nav:hover{transform:translateY(-50%) scale(1.08)}
+  .deck-nav[disabled]{opacity:0!important;pointer-events:none}
+  .deck-nav.prev{left:12px} .deck-nav.next{right:12px}
+  .deck-bar{height:2px;background:var(--chip);border-radius:2px;margin-top:12px;overflow:hidden}
+  .deck-bar i{display:block;height:100%;background:#1a73e8;border-radius:2px;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+  .deck-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-top:11px}
+  .deck-cap{font-size:12.5px;color:var(--meta);line-height:1.55;flex:1;min-height:34px}
+  .deck-cap b{color:#202124;font-weight:500}
+  .deck-count{font-size:12px;color:var(--meta);white-space:nowrap;padding-top:1px;font-variant-numeric:tabular-nums}
+  .deck-dots{display:flex;gap:7px;margin-top:10px;justify-content:center}
+  .deck-dots button{
+    width:7px;height:7px;border-radius:50%;border:0;padding:0;cursor:pointer;
+    background:#d6d9dc;transition:background .25s, transform .25s;
+  }
+  .deck-dots button.on{background:#1a73e8;transform:scale(1.45)}
+  .fadecap{animation:fadecap .45s ease both}
+  @keyframes fadecap{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
   .rise{opacity:0;transform:translateY(16px);animation:rise .5s cubic-bezier(.2,.8,.2,1) forwards}
   @keyframes rise{to{opacity:1;transform:none}}
 
@@ -591,6 +630,29 @@ const OVERVIEWS = {
 };
 
 const DETAILS = {
+  "projects/signal-detection":{
+    kicker:"Research \u00b7 Signal detection theory \u00b7 PsychoPy",
+    title:"Can people tell AI images from real ones?",
+    lede:"Accuracy is a misleading number for this question. Someone who calls everything AI will look accurate on the AI half and terrible on the real half, and the average hides both. <b>Signal detection theory splits that apart</b> \u2014 sensitivity (d\u2032) is how well you can actually tell the two apart, criterion (c) is how willing you are to say AI at all. We ran a 166-trial detection task on 12 participants to measure both.",
+    deck:[
+      {src:"sdt-1.jpg", cap:"<b>The question.</b> Four image categories \u2014 faces, landscapes, objects, dogs \u2014 under one identical yes/no task, so content could be compared on a common scale."},
+      {src:"sdt-2.jpg", cap:"<b>The framework.</b> Every trial lands in one of four cells. d\u2032 measures how far apart the evidence distributions sit; c measures where you set the threshold between them."},
+      {src:"sdt-3.jpg", cap:"<b>One trial.</b> Fixation for 0.5s, image for 1s, then 2.5s to answer. The image is gone before the response \u2014 deliberately a judgment under time pressure."},
+      {src:"sdt-4.jpg", cap:"<b>The decision that changed the result.</b> Timeouts aren't answers. Counting them in the denominator made participants look cautious (c = +0.25); conditioning on responded trials showed they were essentially neutral."},
+      {src:"sdt-5.jpg", cap:"<b>Result 1: modest but real.</b> d\u2032 = 0.85, 66% accuracy, and every single participant landed above chance. Reliable \u2014 but the distributions still overlap heavily."},
+      {src:"sdt-6.jpg", cap:"<b>Main finding.</b> Detection depends on content. Dogs (1.20) and landscapes (1.17) were far easier than faces (0.64) and objects (0.50). F(3,33) = 5.05, p = .005."},
+      {src:"sdt-7.jpg", cap:"<b>What it means.</b> The category effect lives in sensitivity, not bias \u2014 criterion didn't differ by category. That distinction is exactly what SDT exists to make."}
+    ],
+    sections:[
+      {h:"What we found", list:[
+        "<b>People are above chance, but barely.</b> d\u2032 \u2248 0.85 across 12 participants \u2014 real sensitivity, heavily overlapping distributions.",
+        "<b>Content drives difficulty more than skill does.</b> Dogs and landscapes were roughly twice as detectable as faces and objects, a large effect (partial \u03b7\u00b2 = 0.31).",
+        "<b>The bias story was an artifact.</b> Handling timed-out trials correctly moved criterion from apparently cautious to essentially neutral \u2014 the errors come from limited sensitivity, not a reluctance to call something AI."
+      ]},
+      {h:"What I took from it", body:"The most consequential decision in the whole project wasn't the design or the analysis \u2014 it was what to do with trials where nobody pressed a key. Treating a timeout as a \"real\" response would have produced a clean, publishable-looking story about cautious observers that simply wasn't true. Data cleaning rules aren't preliminaries to the analysis; sometimes they are the finding."}
+    ],
+    chips:["PsychoPy","Signal detection theory","Python","Repeated-measures ANOVA","Experiment design","n = 12, 1,992 trials"]
+  },
   "projects/chief-of-staff":{
     kicker:"Project \u00b7 Jun 2026 \u00b7 Python, Anthropic API",
     title:"Chief of Staff Agent",
@@ -864,7 +926,7 @@ document.body.appendChild(modal);
 const modalCard=modal.querySelector(".modal-card");
 const lightbox=document.createElement("div"); lightbox.className="lightbox"; lightbox.innerHTML="<img alt=''>";
 document.body.appendChild(lightbox);
-let lastFocus=null;
+let lastFocus=null, deckCtl=null;
 
 function openDetail(path){
   const d=DETAILS[path]; if(!d) return;
@@ -882,11 +944,27 @@ function openDetail(path){
     </div>
     <div class="modal-body">
       <p class="rise" ${delay()}>${d.lede}</p>
-      <div class="gallery">
+      ${d.gallery?`<div class="gallery">
         ${d.gallery.map(g=>`<figure class="rise${g.wide?" wide":""}" ${delay()}>
           <img src="${g.src}" alt="${d.title}" loading="lazy">
           <figcaption>${g.cap}</figcaption></figure>`).join("")}
-      </div>
+      </div>`:""}
+      ${d.deck?`<div class="deck rise" ${delay()}>
+        <div class="deck-stage">
+          ${d.deck.map((s,i)=>`<div class="deck-slide${i===0?" on":""}" data-i="${i}">
+            <img src="${s.src}" alt="Slide ${i+1}" loading="${i<2?"eager":"lazy"}"></div>`).join("")}
+          <button class="deck-nav prev" aria-label="Previous slide" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#202124" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="deck-nav next" aria-label="Next slide">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#202124" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="deck-bar"><i style="width:${(100/d.deck.length).toFixed(1)}%"></i></div>
+        <div class="deck-foot">
+          <div class="deck-cap fadecap">${d.deck[0].cap}</div>
+          <div class="deck-count">1 / ${d.deck.length}</div>
+        </div>
+        <div class="deck-dots">${d.deck.map((s,i)=>`<button class="${i===0?"on":""}" data-d="${i}" aria-label="Slide ${i+1}"></button>`).join("")}</div>
+      </div>`:""}
       ${d.sections.map(s=>`
         <div class="rise" ${delay()}>
           <h3>${s.h}</h3>
@@ -903,11 +981,43 @@ function openDetail(path){
   modalCard.querySelectorAll(".gallery img").forEach(img=>{
     img.onclick=()=>{ lightbox.querySelector("img").src=img.src; lightbox.classList.add("on"); };
   });
+  deckCtl = null;
+  const stage = modalCard.querySelector(".deck-stage");
+  if(stage){
+    const slides=[...stage.querySelectorAll(".deck-slide")];
+    const prev=stage.querySelector(".prev"), next=stage.querySelector(".next");
+    const bar=modalCard.querySelector(".deck-bar i"), cap=modalCard.querySelector(".deck-cap");
+    const count=modalCard.querySelector(".deck-count"), dots=[...modalCard.querySelectorAll(".deck-dots button")];
+    let i=0;
+    const go=n=>{
+      n=Math.max(0,Math.min(d.deck.length-1,n));
+      if(n===i) return;
+      slides.forEach((s,k)=>{
+        s.classList.remove("on","before");
+        if(k===n) s.classList.add("on");
+        else if(k<n) s.classList.add("before");
+      });
+      i=n;
+      bar.style.width=((i+1)*100/d.deck.length).toFixed(1)+"%";
+      count.textContent=`${i+1} / ${d.deck.length}`;
+      cap.classList.remove("fadecap"); void cap.offsetWidth;
+      cap.innerHTML=d.deck[i].cap; cap.classList.add("fadecap");
+      dots.forEach((b,k)=>b.classList.toggle("on",k===i));
+      prev.disabled=i===0; next.disabled=i===d.deck.length-1;
+    };
+    prev.onclick=()=>go(i-1); next.onclick=()=>go(i+1);
+    dots.forEach(b=>b.onclick=()=>go(+b.dataset.d));
+    slides.forEach(s=>s.querySelector("img").onclick=()=>{
+      lightbox.querySelector("img").src=s.querySelector("img").src; lightbox.classList.add("on");
+    });
+    deckCtl={go,at:()=>i};
+  }
   setTimeout(()=>modalCard.querySelector(".modal-close").focus(),120);
 }
 function closeDetail(){
   scrim.classList.remove("on"); modal.classList.remove("on");
   document.body.style.overflow="";
+  deckCtl=null;
   setTimeout(()=>{ modal.style.display="none"; modalCard.innerHTML=""; },340);
   if(lastFocus) lastFocus.focus();
 }
@@ -915,6 +1025,10 @@ scrim.onclick=closeDetail;
 modal.onclick=e=>{ if(e.target===modal) closeDetail(); };
 lightbox.onclick=()=>lightbox.classList.remove("on");
 document.addEventListener("keydown",e=>{
+  if(deckCtl && modal.classList.contains("on") && !lightbox.classList.contains("on")){
+    if(e.key==="ArrowRight"){ e.preventDefault(); deckCtl.go(deckCtl.at()+1); return; }
+    if(e.key==="ArrowLeft"){ e.preventDefault(); deckCtl.go(deckCtl.at()-1); return; }
+  }
   if(e.key!=="Escape") return;
   if(lightbox.classList.contains("on")) lightbox.classList.remove("on");
   else if(modal.classList.contains("on")) closeDetail();
