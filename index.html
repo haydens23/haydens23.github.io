@@ -287,6 +287,7 @@
 
   .gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:4px 0 8px}
   .gallery figure{margin:0}
+  .gallery figure.wide{grid-column:1/-1}
   .gallery img{
     display:block;width:100%;border-radius:14px;border:1px solid var(--line);
     cursor:zoom-in;background:#fafafa;
@@ -590,6 +591,24 @@ const OVERVIEWS = {
 };
 
 const DETAILS = {
+  "projects/adapt":{
+    kicker:"Project \u00b7 Jun 2026 \u00b7 Solo build",
+    title:"Adapt \u2014 autoregulated lifting",
+    lede:"Every lifting app assumes the program is right and you are the variable. But a set that moves fast on Tuesday and grinds on Friday shouldn't produce the same next week \u2014 and the standard fix, autoregulation, asks you to do the adjustment math yourself, between sets, while out of breath. <b>Adapt takes that judgment call off the lifter.</b>",
+    gallery:[
+      {src:"adapt-1.jpg", wide:true, cap:"The full surface area: dashboard, manual entry with the RIR selector, voice capture, and the history view that the coaching layer reads from."}
+    ],
+    sections:[
+      {h:"What I built", body:"A lifting log where each set carries how hard it actually felt, not just weight and reps. An LLM coaching layer reads that history across the training block and adjusts what you should be doing next. Built on Lovable and Supabase, with voice capture through the Web Speech API."},
+      {h:"Design decisions", list:[
+        "<b>Voice as the primary path.</b> Typing between sets is friction at exactly the wrong moment, so you can just say \"bench 175 for 8, zero RIR\" and keep moving. Manual entry stays for when you want precision.",
+        "<b>A 0\u20134 scale, not free text.</b> Constraining the input to five buttons labeled failure through easy makes it answerable in a second and keeps the data clean enough to reason over.",
+        "<b>Capturing what usually goes unlogged.</b> Sticking point and a pain flag are on the same form as weight and reps \u2014 those are the signals that predict a stall or an injury, and no app was collecting them."
+      ]},
+      {h:"What I took from it", body:"Building for yourself is the fastest feedback loop there is \u2014 I find friction the same week I ship it, because I'm using it under a barbell rather than reading about it in a ticket. The tradeoff is that an audience of one is easy to satisfy, and I've had to be deliberate about separating what's genuinely broken from what merely isn't how I'd do it."}
+    ],
+    chips:["Lovable","Supabase","Web Speech API","LLM coaching layer","RPE/RIR","Solo build"]
+  },
   "projects/caloriq":{
     kicker:"Project \u00b7 Oct \u2013 Dec 2024 \u00b7 Product Owner",
     title:"CalorIQ \u2014 photo-based meal logging",
@@ -602,10 +621,9 @@ const DETAILS = {
       {h:"What we built", body:"Point the camera at a plate and get an itemized estimate back. The Gemini Vision API handles recognition, ARKit estimates portion size from depth, and Firebase holds the log. Built with a 9-person team on React Native and shipped in an 8-week sprint."},
       {h:"What I owned", list:[
         "<b>Scope.</b> We cut a barcode scanner and a restaurant database from v1 to protect the 8-week window \u2014 dining hall food is neither packaged nor on a menu, so neither would have served the actual user.",
-        "<b>Prioritization.</b> Ran the backlog across 9 people with a weekly cut line, which mattered more than any single feature decision.",
-        "<b>Post-launch iteration.</b> Usage data showed people screenshotting their logs and sending them to friends, unprompted. That wasn't a feature \u2014 it was a workaround. We shipped a friends feature in response."
+        "<b>Prioritization.</b> Ran the backlog across 9 people with a weekly cut line, which mattered more than any single feature decision."
       ]},
-      {h:"What I took from it", body:"The friends feature is the part I still think about. Nobody requested it in a survey; it showed up as behavior working around a missing surface. Watching what users do around the edges of a product turned out to be a better signal than asking them what they wanted."}
+      {h:"What I took from it", body:"Eight weeks and nine people only worked because the cadence was fixed before the work started. We ran a standing weekly cycle \u2014 scope Monday, build midweek, demo something functional Friday \u2014 and every week had to end with a deliverable someone could actually open, not a status update. That constraint did the prioritizing for us: anything that couldn't show progress inside a week either got cut or got broken into something that could. On a team that size, the schedule was the real coordination mechanism. Ideas were never the bottleneck; finishing was."}
     ],
     chips:["React Native","Gemini Vision API","ARKit","Firebase","Product ownership","8-week sprint"]
   }
@@ -847,7 +865,7 @@ function openDetail(path){
     <div class="modal-body">
       <p class="rise" ${delay()}>${d.lede}</p>
       <div class="gallery">
-        ${d.gallery.map(g=>`<figure class="rise" ${delay()}>
+        ${d.gallery.map(g=>`<figure class="rise${g.wide?" wide":""}" ${delay()}>
           <img src="${g.src}" alt="${d.title}" loading="lazy">
           <figcaption>${g.cap}</figcaption></figure>`).join("")}
       </div>
